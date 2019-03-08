@@ -1,32 +1,90 @@
-.App {
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+  overflow: hidden;
+}
+
+ol, ul {
+  padding-left: 30px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+
+.square {
+  touch-action: none;
+  background: #fff;
+  border: 1px solid #999;
+  border-radius:8px;
+  float: left;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 40px;
+  height: 40px;
+  margin-right: 9px;
+  margin-top: 9px;
+  padding: 0;
   text-align: center;
+  width: 40px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.square[draggable=true] {
+  -khtml-user-drag: element;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.square:focus {
+  outline: none;
 }
 
-.App-link {
-  color: #61dafb;
+.kbd-navigation .square:focus {
+  background: #ddd;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.game-board {
+  min-width: 204px;
+  float: left;
+}
+
+.underscore-true {
+  text-decoration: underline;
+}
+
+.game-info {
+  float: left;
+  margin-left: 20px;
+  text-transform: capitalize;
+}
+
+.new-word {
+  min-height: 20px;
+}
+
+.disallowed {
+  text-decoration: line-through;
+}
+
+
+.rotate90 {
+  -webkit-transform:rotate(90deg);
+  -moz-transform: rotate(90deg); 
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+
+.rotate180 {
+    -webkit-transform:rotate(180deg);
+    -moz-transform: rotate(180deg); 
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+}
+
+.rotate270 {
+    -webkit-transform:rotate(270deg);
+    -moz-transform: rotate(270deg); 
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
