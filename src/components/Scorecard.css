@@ -1,0 +1,9 @@
+.game-info {
+    float: left;
+    margin-left: 20px;
+    text-transform: capitalize;
+  }
+  
+  .new-word {
+    min-height: 20px;
+  }

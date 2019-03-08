@@ -1,0 +1,14 @@
+.game-board {
+    min-width: 204px;
+    float: left;
+  }
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
