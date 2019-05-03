@@ -1,101 +1,73 @@
 import React from 'react';
-import Board from './Board';
-import Scorecard from './Scorecard';
-import Word from '../Word';
+import { connect } from 'react-redux'; 
+
+import {
+  START_GAME_REQUEST, START_GAME_SUCCESS, //START_GAME_FAILURE,
+} from '../redux-actions.js';
+import BoardDisplay from './Board';
+import ScorecardDisplay from './Scorecard';
+
+export function gameReducer(state = {
+  id: undefined,
+  isLoading: false,
+  hasBoard: false,
+  endTime: undefined,
+}, action) {
+  switch (action.type) {
+    case START_GAME_REQUEST:
+      return Object.assign({}, state, {
+        isLoading: true,
+      });
+    case START_GAME_SUCCESS:
+      return Object.assign({}, state, {
+        id: action.game.id,
+        endTime: action.game.endTime,
+        isLoading: false,
+        hasBoard: true,
+      });
+    default:
+      return state;
+  }
+}
+
+const mapStateToGameProps = (state) => {
+  return {
+    isLoading: state.game.isLoading,
+    hasBoard: state.game.hasBoard,
+  };
+};
+
+const mapDispatchToGameProps = (dispatch) => (
+  {
+  }
+);
+
 
 class Game extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        touchWordBuildingStarted: false,
-        newWord: new Word(),
-        foundWordPaths: [],
-        foundWords: []
-      };
-    }
-  
-    resetWord(newWordStarted) {
-      this.setState({
-        touchWordBuildingStarted: newWordStarted,
-        newWord: new Word(),
-      });
-    }
-      
-    startBuildingWord(die) {
-      this.resetWord(true);
-    }
-    
-    startBuildingWordDrag(die) {
-      this.startBuildingWord(die);
-    }
-    
-    startBuildingWordTouch(die) {
-      this.setState( { touchWordBuildingStarted: true } );
-      this.startBuildingWord(die);
-      this.continueWord(die);
-    }
-    
-    continueWord(die) {
-      let newWord = this.state.newWord;
-      newWord.addLetter(die);
-      this.setState({ newWord: newWord });    
-    }
-    
-    continueWordDrag(die) {
-      this.continueWord(die);
-    }
-  
-    continueWordTouch(die) {
-      if (this.state.touchWordBuildingStarted) {
-          this.continueWord(die);
-      }
-    }
-  
-    finishWord() {
-      if (this.state.newWord.value.length >= 3) {
-        if (!this.state.foundWords.some( x => x.word.value === this.state.newWord.value)) {
-          let foundWords = this.state.foundWords.slice();
-          foundWords.unshift( {
-              word: this.state.newWord,
-              score: null
-            })
-          this.setState({ 
-            foundWords: foundWords
-          });
-        }
-      }
-      this.setState({ newWord: new Word() });
-    }
-    
-    finishWordDrag() {
-      this.finishWord();
-    }
-    
-    finishWordTouch() {
-      this.finishWord();
-    }
-    
-    render() {
+  render() {
+    if (this.props.hasBoard) {
       return (
-        <div className="game">
-          <div className="game-board">
-            <Board
-              onDragStart={(props) => this.startBuildingWordDrag(props)}
-              onDragEnter={(props) => this.continueWordDrag(props)}
-              onDragEnd={(props) => this.finishWordDrag(props)} 
-              onTouchStart={(props) => this.startBuildingWordTouch(props)}
-              onTouchMove={(props) => this.continueWordTouch(props)}
-              onTouchEnd={(props) => this.finishWordTouch(props)}
-            />
-          </div>
-          <Scorecard 
-            newWord={this.state.newWord}
-            foundWords={this.state.foundWords}
-            gameId={'bb0b4743-b011-455a-a7b2-241199dd2574'}
-            />
-        </div>
+            <div className="game">
+                 <BoardDisplay />
+                 <ScorecardDisplay />
+            </div>
       );
+    }
+    else {
+      if (this.props.isLoading) {
+        return (<div className="game">Loading...</div>);
+      }
+      else {
+        return (<div className="game"></div>);
+      }
     }
   }
 
-  export default Game;
+}
+
+const GameDisplay = connect(
+  mapStateToGameProps,
+  mapDispatchToGameProps
+)(Game);
+
+export default GameDisplay;

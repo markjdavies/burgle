@@ -1,69 +1,38 @@
-import React, { Component } from 'react';
-import Game from './Game';
+import React from 'react';
+import thunkMiddleware from 'redux-thunk';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import { startGame } from '../redux-actions.js';
+import GameDisplay, { gameReducer } from './Game';
+import { boardReducer } from './Board';
 import './App.css';
 
-class App extends Component {
+const reducer = combineReducers({
+  game: gameReducer,
+  board: boardReducer,
+});
+
+const composeEnhancers = (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true, traceLimit: 25 })) || compose;
+const store = createStore(reducer, /* preloadedState, */ composeEnhancers(
+  applyMiddleware(thunkMiddleware)
+));
+
+class App extends React.Component {
+
+  componentDidMount() {
+    store.subscribe(() => this.forceUpdate());
+    store.dispatch(startGame());
+  };
 
   render() {
     return (
       <div className="App">
-        
-        <Game />
-
+        <Provider store={store}>
+          <GameDisplay />
+        </Provider>
       </div>
     );
-  }
+  };
 }
-
-
-/* ****************************************************************************************** 
-**    Context
-** *****************************************************************************************/ 
-// class ApiRootProvider extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     const localRoot = 'http://localhost:5000/api/';
-//     const herokuRoot = 'https://burgle.herokuapp.com/api/';
-
-//     this.changeRoot = () => {
-//       this.setState(state => {
-//         const newRoot = state.apiRoot === this.herokuRoot ? this.localRoot : this.herokuRoot;
-//         return {
-//           apiRoot: this.herokuRoot
-//         };
-//       });
-//     };
-
-//     this.state = {
-//       apiRoot: herokuRoot,
-//       changeRoot: this.changeRoot
-//     };
-    
-//   }
-
-//   render() {
-//     return (
-//       <ApiRootContext.Provider value={this.state}>
-//         {this.props.children}
-//       </ApiRootContext.Provider>
-//     );
-//   }
-// }
-
-/*
-class ToggleServer extends React.Component {
-  constructor(props){
-    super(props);
-    return (
-      <ApiRootContext.Consumer>
-        {serverVal => (
-          <button onClick={serverVal.changeApiRoot}>Change server</button>
-        )}
-      </ApiRootContext.Consumer>
-    )
-  }
-}
-*/
-
-
 export default App;

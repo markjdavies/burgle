@@ -1,18 +1,21 @@
 import React from 'react';
 import './Square.css';
 
-class Square extends React.Component {
-    render() {
-        return (
-            <span 
-              draggable="true"onDragStart={this.props.onDragStart} onDragEnter={this.props.onDragEnter} onDragEnd={this.props.onDragEnd}
-              onTouchStart={this.props.onTouchStart} onTouchMove={this.props.onTouchMove} onTouchEnd={this.props.onTouchEnd}
-              className={ `square underscore-${this.props.isUnderscored} rotate-${this.props.rotation}` }
-              data-board-index={this.props.boardIndex}>
-              {this.props.value}      
-            </span>
-          );
-    }
+function Square(props) {
+  return (
+    <span
+      draggable="true"
+      onDragStart={props.handleDragStart}
+      onDragOver={props.handleDragOver}
+      onDragEnd={props.handleDragEnd}
+      onTouchStart={props.handleTouchStart}
+      onTouchMove={(se) => { props.handleTouchMove(se, props.boardRows) }}
+      onTouchEnd={props.handleTouchEnd}
+      className={`square underscore-${props.die.showingFace.isUnderscored} rotate-${props.die.rotation}`}
+      data-board-index={props.boardIndex}>
+      {props.die.showingFace.value}
+    </span>
+  );
 }
 
 export default Square;

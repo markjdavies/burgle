@@ -1,17 +1,32 @@
 import React from 'react';
+import { connect } from 'react-redux'; 
 import ScorecardWord from './ScorecardWord';
+import { valueFromPath } from '../word-utils';
 import './Scorecard.css';
+
+
+const mapStateToScorecardProps = (state) => {
+  return {
+    hasBoard: state.game.hasBoard,
+    foundWords: state.board.foundWords,
+    newWord: state.board.newWordPath,
+  };
+};
+
+const mapDispatchToScorecardProps = (dispatch) => (
+  {
+  }
+);
 
 class Scorecard extends React.Component {
 
-    renderScorecardWord(props) {
+    renderScorecardWord(word) {
+      const value = valueFromPath(word.path);
       return (
         <ScorecardWord
-          key={props.value}
-          value={props.value}
-          score={props.score}
-          path={props.path}
-          gameId={this.props.gameId}
+          key={value}
+          value={value}
+          score={word.score}
           />
       )
     }
@@ -19,12 +34,12 @@ class Scorecard extends React.Component {
     render() {
       return (
         <div className="game-info">
-          { <div className="new-word">{ this.props.newWord.value }</div> }
+          { <div className="new-word">{ valueFromPath(this.props.newWord) }</div> }
           <table className="word-list">
             <thead><tr><th></th><th>Score</th></tr></thead>
             <tbody>
               {this.props.foundWords.map(foundWord => (
-                  this.renderScorecardWord(foundWord.word)
+                  this.renderScorecardWord(foundWord)
                 ))}
             </tbody>
           </table>
@@ -33,4 +48,8 @@ class Scorecard extends React.Component {
     }
   }
   
-export default Scorecard;
+  const ScorecardDisplay = connect(
+    mapStateToScorecardProps,
+    mapDispatchToScorecardProps
+  )(Scorecard);
+  export default ScorecardDisplay;
