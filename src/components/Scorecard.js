@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import ScorecardWord from './ScorecardWord';
 import { valueFromPath } from '../word-utils';
 import './Scorecard.css';
-
+import WordBuilder from './WordBuilder';
 
 const mapStateToScorecardProps = (state) => {
   return {
@@ -40,7 +40,7 @@ const mapDispatchToScorecardProps = (dispatch) => (
     render() {
       return (
         <div className="game-info">
-          { <div className="new-word">{ valueFromPath(this.props.newWord) }</div> }
+          <WordBuilder wordPath={this.props.newWord} />
           <table className="word-list">
             <thead><tr><th></th><th>Score</th></tr></thead>
             <tbody>
