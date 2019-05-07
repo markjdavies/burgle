@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Square.css';
 
 function Square(props) {
@@ -17,5 +18,16 @@ function Square(props) {
     </span>
   );
 }
+
+Square.propTypes = {
+  handleDragStart: PropTypes.func,
+  handleDragOver: PropTypes.func,
+  handleDragEnd: PropTypes.func,
+  handleTouchStart: PropTypes.func,
+  handleTouchMove: PropTypes.func,
+  handleTouchEnd: PropTypes.func,
+  die: PropTypes.object,
+  boardIndex: PropTypes.number,
+};
 
 export default Square;

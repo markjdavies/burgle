@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'; 
 
 import {
@@ -44,6 +45,12 @@ const mapDispatchToGameProps = (dispatch) => (
 
 
 class Game extends React.Component {
+
+  static propTypes = {
+    hasBoard: PropTypes.bool,
+    isLoading: PropTypes.bool,
+  }
+
   render() {
     if (this.props.hasBoard) {
       return (
@@ -64,6 +71,7 @@ class Game extends React.Component {
   }
 
 }
+
 
 const GameDisplay = connect(
   mapStateToGameProps,

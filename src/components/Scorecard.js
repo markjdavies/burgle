@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'; 
 import ScorecardWord from './ScorecardWord';
 import { valueFromPath } from '../word-utils';
@@ -16,10 +17,15 @@ const mapStateToScorecardProps = (state) => {
 const mapDispatchToScorecardProps = (dispatch) => (
   {
   }
-);
-
-class Scorecard extends React.Component {
-
+  );
+  
+  class Scorecard extends React.Component {
+    
+    static propTypes = {
+      newWord: PropTypes.array,
+      foundWord: PropTypes.object,
+    };
+    
     renderScorecardWord(word) {
       const value = valueFromPath(word.path);
       return (
@@ -48,6 +54,7 @@ class Scorecard extends React.Component {
     }
   }
   
+
   const ScorecardDisplay = connect(
     mapStateToScorecardProps,
     mapDispatchToScorecardProps

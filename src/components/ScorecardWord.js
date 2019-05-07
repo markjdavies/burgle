@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './ScorecardWord.css';
 
 function ScorecardWord(props) {
@@ -13,5 +14,10 @@ function ScorecardWord(props) {
       </tr>
     );
 }
+
+ScorecardWord.propTypes = {
+  value: PropTypes.string.isRequired,
+  score: PropTypes.number,
+};
 
 export default ScorecardWord;

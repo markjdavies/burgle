@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   START_GAME_SUCCESS,
@@ -131,6 +132,18 @@ function Board(props) {
     </div>
   );
 }
+
+Board.propTypes = {
+  handleDragStart: PropTypes.func,
+  handleDragOver: PropTypes.func,
+  handleDragEnd: PropTypes.func,
+  handleTouchStart: PropTypes.func,
+  handleTouchMove: PropTypes.func,
+  handleTouchEnd: PropTypes.func,
+  die: PropTypes.object,
+  boardIndex: PropTypes.number,
+  boardRows: PropTypes.array,
+};
 
 const BoardDisplay = connect(
   mapStateToBoardProps,
