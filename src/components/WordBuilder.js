@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import './WordBuilder.css';
 
 function WordBuilder(props) {
-    return (
-        <div className="word-builder"> {
-            props.wordPath.map(letter => {
-                return (
-                    <span className="new-word">{letter.showingFace.value.toUpperCase()}</span>
-                );
-            })
-        }</div>
-    );
+  return (
+    <div className="word-builder"> {
+      props.wordPath.map(letter => {
+        return (
+          <span className="new-word">{letter.showingFace.value.toUpperCase()}</span>
+        );
+      })
+    }</div>
+  );
 }
 
 WordBuilder.propTypes = {
-    wordPath: PropTypes.array,
+  wordPath: PropTypes.array,
 }
 
 export default WordBuilder;
