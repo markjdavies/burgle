@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'; 
+import { Loader } from 'semantic-ui-react'
 
 import {
   START_GAME_REQUEST, START_GAME_SUCCESS, //START_GAME_FAILURE,
@@ -62,7 +63,7 @@ class Game extends React.Component {
     }
     else {
       if (this.props.isLoading) {
-        return (<div className="game">Loading...</div>);
+        return (<Loader active inline />);
       }
       else {
         return (<div className="game"></div>);

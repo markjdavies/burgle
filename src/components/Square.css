@@ -1,18 +1,16 @@
 .square {
     touch-action: none;
-    background: #fff;
-    border: 1px solid #999;
-    border-radius:8px;
+    /* border: 1px solid #999;
+    border-radius:8px; */
     float: left;
-    font-size: 28px;
+    font-size: 34px;
     font-weight: bold;
-    line-height: 40px;
-    height: 40px;
-    margin-right: 9px;
-    margin-top: 9px;
-    padding: 0;
+    line-height: 28px;
+    height: 44px;
+    margin-left: 2%;
+    margin-top: 6%;
     text-align: center;
-    width: 40px;
+    width: 23%;
   }
   
   .underscore-true {

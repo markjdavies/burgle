@@ -110,7 +110,7 @@ const mapDispatchToBoardProps = (dispatch) => (
 function Board(props) {
   return (
     <div className="game-board">
-      <div>
+      <div className="letter-grid">
         {props.board.dice.rows.map((row, rowIndex) => (
           <div key={rowIndex} className="board-row">
             {row.dice.map((die) => (

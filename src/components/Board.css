@@ -1,7 +1,17 @@
 .game-board {
-    min-width: 204px;
+    background: url("Board.gif") no-repeat;
+    background-size:  320px ;
+    width: 320px;
     float: left;
   }
+
+  .letter-grid {
+    margin: 6% 6.5% 3% 10%;
+  }
+
+.board-row {
+  margin-bottom: 3px;
+}
 
 .board-row:after {
   clear: both;
