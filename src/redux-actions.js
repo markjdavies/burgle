@@ -91,12 +91,14 @@ export function finishWord(die) {
   return function (dispatch, getState) {
     const state = getState();
     const gameId = state.game.id;
+    const now = new Date();
+    const gameEndTime = new Date(state.game.endTime);
     const wordPath = state.board.newWordPath;
     const word = {
       value: valueFromPath(wordPath),
       path: wordPath,
     };
-    if (wordPath.length >= 3) {
+    if (gameEndTime > now && wordPath.length >= 3) {
       if (!state.board.foundWords.some(x => x.value === word.value)) {
         dispatch(addWord(word));
         getScoreForNewWord(gameId, word, dispatch);
