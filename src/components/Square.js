@@ -4,18 +4,21 @@ import './Square.css';
 
 function Square(props) {
   return (
-    <span
-      draggable="true"
-      onDragStart={props.handleDragStart}
-      onDragOver={props.handleDragOver}
-      onDragEnd={props.handleDragEnd}
-      onTouchStart={props.handleTouchStart}
-      onTouchMove={(se) => { props.handleTouchMove(se, props.boardRows) }}
-      onTouchEnd={props.handleTouchEnd}
-      className={`square underscore-${props.die.showingFace.isUnderscored} rotate-${props.die.rotation}`}
-      data-board-index={props.boardIndex}>
-      {props.die.showingFace.value}
-    </span>
+    <div className="square">
+      <div
+        className={`die-label underscore-${props.die.showingFace.isUnderscored} rotate-${props.die.rotation}`}
+        id={`die_${props.boardIndex}`}
+        draggable="true"
+        onDragStart={props.handleDragStart}
+        onDragOver={props.handleDragOver}
+        onDragEnd={props.handleDragEnd}
+        onTouchStart={props.handleTouchStart}
+        onTouchMove={(se) => { props.handleTouchMove(se, props.boardRows) }}
+        onTouchEnd={props.handleTouchEnd}
+        data-board-index={props.boardIndex}>
+        {props.die.showingFace.value}
+      </div>
+    </div>
   );
 }
 

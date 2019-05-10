@@ -1,48 +1,166 @@
 .square {
-    touch-action: none;
-    /* border: 1px solid #999;
-    border-radius:8px; */
-    float: left;
-    font-size: 34px;
-    font-weight: bold;
-    line-height: 28px;
-    height: 44px;
-    margin-left: 2%;
-    margin-top: 6%;
-    text-align: center;
-    width: 23%;
-  }
-  
-  .underscore-true {
-    text-decoration: underline;
-  }
+  touch-action: none;
+  /* border: 1px solid #999;
+  border-radius:8px; */
+  float: left;
+  height: 44px;
+  margin-left: 2%;
+  margin-top: 6%;
+  width: 23%;
+}
 
-  .kbd-navigation .square:focus {
-    background: #ddd;
-  }
+.die-label {
+  color: rgba(34, 34, 34, 0.87);
+  margin: 0;
+  filter: blur(1px);
+  font-size: 34px;
+  font-weight: bold;
+  line-height: 28px;  
+  text-align: center;
+}
 
-  .square[draggable=true] {
-    -khtml-user-drag: element;
-  }
-  
-  .square:focus {
-    outline: none;
-  }
+.underscore-true {
+  text-decoration: underline;
+}
 
-  .rotate90 {
-    -webkit-transform:rotate(90deg);
-    -moz-transform: rotate(90deg); 
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
-  }
-  
-  .rotate180 {
-      -webkit-transform:rotate(180deg);
-      -moz-transform: rotate(180deg); 
-      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
-  }
-  
-  .rotate270 {
-      -webkit-transform:rotate(270deg);
-      -moz-transform: rotate(270deg); 
-      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-  }
+.kbd-navigation .die-label:focus {
+  background: #ddd;
+}
+
+.die-label[draggable=true] {
+  -khtml-user-drag: element;
+}
+
+.die-label:focus {
+  outline: none;
+}
+
+.rotate90 {
+  -webkit-transform:rotate(90deg);
+  -moz-transform: rotate(90deg); 
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+
+.rotate180 {
+    -webkit-transform:rotate(180deg);
+    -moz-transform: rotate(180deg); 
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+}
+
+.rotate270 {
+    -webkit-transform:rotate(270deg);
+    -moz-transform: rotate(270deg); 
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+/*
+  Nudge the individual dice around to fit those on the image
+  and to make them look more natural on the dice in the board image.
+*/
+
+/* Top row */
+#die_0 {
+  padding-left: 16px;
+  position: relative;
+  width: 32px;
+  top: -2px;
+  -webkit-transform:rotate(2deg);
+  -moz-transform: rotate(2deg); 
+}
+#die_1 {
+  padding-left: 0px;
+  position: relative;
+  top: -2px;
+  left: -2px;
+}
+#die_2 {
+  padding-left: 0px;
+  position: relative;
+  top: -2px;
+  left: -1px;
+  -webkit-transform:rotate(1deg);
+  -moz-transform: rotate(1deg); 
+}
+#die_3 {
+  padding-left: 0px;
+  position: relative;
+  top: -3px;
+  left: -2px;
+}
+
+/* Second row */
+#die_4 {
+  padding-left: 0px;
+  position: relative;
+  top: -2px;
+  left: -2px;
+}
+#die_5 {
+  padding-left: 0px;
+  position: relative;
+  top: -2px;
+}
+#die_6 {
+  padding-left: 0px;
+  position: relative;
+  top: -2px;
+  -webkit-transform:rotate(-2deg);
+  -moz-transform: rotate(-2deg); 
+}
+#die_7 {
+  padding-left: 0px;
+  position: relative;
+  top: -2px;
+}
+
+/* Third row */
+#die_8 {
+  padding-left: 0px;
+  position: relative;
+  top: 1px;
+  left: -3px;
+}
+#die_9 {
+  padding-left: 0px;
+  position: relative;
+  top: -1px;
+  -webkit-transform:rotate(2deg);
+  -moz-transform: rotate(2deg); 
+}
+#die_10 {
+  padding-left: 2px;
+  position: relative;
+  top: -2px;
+}
+#die_11 {
+  padding-left: 2px;
+  position: relative;
+  top: -1px;
+  -webkit-transform:rotate(-2deg);
+  -moz-transform: rotate(-2deg); 
+}
+
+/* Fourth row */
+#die_12 {
+  padding-left: 0px;
+  position: relative;
+  top: 1px;
+  left: -2px;
+  -webkit-transform:rotate(1deg);
+  -moz-transform: rotate(1deg); 
+}
+#die_13 {
+  padding-left: 2px;
+  position: relative;
+  top: 3px;
+  -webkit-transform:rotate(-3deg);
+  -moz-transform: rotate(-3deg); 
+}
+#die_14 {
+  padding-left: 5px;
+  -webkit-transform:rotate(-2deg);
+  -moz-transform: rotate(-2deg); 
+}
+#die_15 {
+  padding-left: 6px;
+}
