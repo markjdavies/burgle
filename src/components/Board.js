@@ -50,8 +50,8 @@ export function boardReducer(state = {
     case ADD_WORD:
       return Object.assign({}, state, {
         foundWords: [
+          action.word,
           ...state.foundWords.slice(0),
-          action.word
         ]
       })
     case SCORE_RECEIVED:
