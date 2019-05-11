@@ -5,9 +5,11 @@ import { Loader } from 'semantic-ui-react'
 
 import {
   START_GAME_REQUEST, START_GAME_SUCCESS, //START_GAME_FAILURE,
+  TIME_UP,
 } from '../redux-actions.js';
 import BoardDisplay from './Board';
 import ScorecardDisplay from './Scorecard';
+import GameTimerDisplay from './GameTimer';
 
 export function gameReducer(state = {
   id: undefined,
@@ -26,7 +28,12 @@ export function gameReducer(state = {
         endTime: action.game.endTime,
         isLoading: false,
         hasBoard: true,
+        isUnderway: true,
       });
+    case TIME_UP:
+    return Object.assign({}, state, {
+      isUnderway: false,
+    });
     default:
       return state;
   }
@@ -54,10 +61,13 @@ class Game extends React.Component {
 
   render() {
     if (this.props.hasBoard) {
+      console.log(this.props);
       return (
             <div className="game">
-                 <BoardDisplay />
-                 <ScorecardDisplay />
+
+              <GameTimerDisplay />   
+              <BoardDisplay />              
+              <ScorecardDisplay />
             </div>
       );
     }

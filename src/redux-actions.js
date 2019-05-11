@@ -81,24 +81,33 @@ export function startBuildingWord() {
 
 export const CONTINUE_WORD = 'CONTINUE_WORD';
 export function continueWord(die) {
+  return function (dispatch, getState) {
+    const state = getState();
+    const gameIsUnderway = state.game.isUnderway;
+    if (gameIsUnderway) {
+      dispatch(continueWordAction(die));    
+    }
+  }
+};
+export function continueWordAction(die) {
   return {
     type: CONTINUE_WORD,
     die: die,
   }
 }
 
+
 export function finishWord(die) {
   return function (dispatch, getState) {
     const state = getState();
     const gameId = state.game.id;
-    const now = new Date();
-    const gameEndTime = new Date(state.game.endTime);
+    const gameIsUnderway = state.game.isUnderway;
     const wordPath = state.board.newWordPath;
     const word = {
       value: valueFromPath(wordPath),
       path: wordPath,
     };
-    if (gameEndTime > now && wordPath.length >= 3) {
+    if (gameIsUnderway && wordPath.length >= 3) {
       if (!state.board.foundWords.some(x => x.value === word.value)) {
         dispatch(addWord(word));
         getScoreForNewWord(gameId, word, dispatch);
@@ -118,3 +127,9 @@ export function addWord(word) {
   }
 }
 
+export const TIME_UP = 'TIME_UP';
+export function timeUp() {
+  return {
+    type: TIME_UP,
+  }
+}
