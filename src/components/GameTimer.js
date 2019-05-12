@@ -32,7 +32,10 @@ class GameTimer extends React.Component {
         const remaining = moment.duration(endTime.diff(now));
         if (remaining > 0) {
             return (
-                <div>{`You have ${remaining.humanize()} left.`}</div>
+                <div>{`You have ${remaining.humanize()} left.`}
+                <div>End time: {endTime.format('HH:mm:ss')}</div>
+                <div>Now: {now.format('HH:mm:ss')}</div>
+                </div>
             );
         }
         else {
