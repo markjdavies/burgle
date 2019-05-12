@@ -48,7 +48,7 @@ class GameTimer extends React.Component {
 
 GameTimer.propTypes = {
     timeUp: PropTypes.func,
-    endTime: PropTypes.object,
+    endTime: PropTypes.string,
   };
 
 const GameTimerDisplay = connect(

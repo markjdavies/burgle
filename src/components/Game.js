@@ -61,7 +61,6 @@ class Game extends React.Component {
 
   render() {
     if (this.props.hasBoard) {
-      console.log(this.props);
       return (
             <div className="game">
 

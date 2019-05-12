@@ -21,6 +21,8 @@ export function boardReducer(state = {
   newWord: undefined,
   foundWordPaths: [],
   foundWords: [],
+  wordsFound: 0,
+  totalScore: 0,
 }, action) {
   switch (action.type) {
     case START_GAME_SUCCESS:
@@ -52,9 +54,9 @@ export function boardReducer(state = {
         foundWords: [
           action.word,
           ...state.foundWords.slice(0),
-        ]
+        ],
       })
-    case SCORE_RECEIVED:
+      case SCORE_RECEIVED:
       const wordValue = action.wordValue;
       var found = false;
       return Object.assign({}, state, {
@@ -71,7 +73,9 @@ export function boardReducer(state = {
               return foundWord;
             }
           })
-        ]
+        ],
+        totalScore: state.totalScore + action.score,
+        wordsFound: action.score > 0 ? state.wordsFound + 1 : state.wordsFound,
       });
     default:
       return state;

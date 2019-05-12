@@ -7,7 +7,7 @@ function WordBuilder(props) {
     <div className="word-builder"> {
       props.wordPath.map(letter => {
         return (
-          <span className="new-word">{letter.showingFace.value.toUpperCase()}</span>
+          <span key={letter.showingFace.id} className="new-word">{letter.showingFace.value.toUpperCase()}</span>
         );
       })
     }</div>

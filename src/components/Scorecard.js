@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'; 
 import ScorecardWord from './ScorecardWord';
+import SorecardSummaryDisplay from './ScorecardSummary';
 import { valueFromPath } from '../word-utils';
 import './Scorecard.css';
 import WordBuilder from './WordBuilder';
@@ -41,6 +42,7 @@ const mapDispatchToScorecardProps = (dispatch) => (
       return (
         <div className="game-info">
           <WordBuilder wordPath={this.props.newWord} />
+          <SorecardSummaryDisplay />
           <table className="word-list">
             <thead><tr><th></th><th>Score</th></tr></thead>
             <tbody>
