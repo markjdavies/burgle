@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { timeUp } from '../redux-actions';
+import Hourglass from './Hourglass';
 
 const mapStateToGameTimerProps = (state) => {
     return {
@@ -18,35 +19,19 @@ const mapDispatchToGameTimerProps = (dispatch) => (
 
 class GameTimer extends React.Component {
 
-    componentDidMount() {
-      this.forceUpdateInterval = setInterval(() => this.forceUpdate(), 50);
-    }
-
     componentWillUnmount() {
-        clearInterval(this.forceUpdateInterval);
+        clearInterval(this.timeUpInterval);
     }
 
     render() {
-        const endTime = new moment(this.props.endTime);
-        const now = new moment();
-        const remaining = moment.duration(endTime.diff(now));
-        if (remaining > 0) {
-            return (
-                <div>{`You have ${remaining.humanize()} left.`}
-                <div>End time: {endTime.format('HH:mm:ss')}</div>
-                <div>Now: {now.format('HH:mm:ss')}</div>
-                </div>
-            );
-        }
-        else {
-            this.props.timeUp();
-            clearInterval(this.forceUpdateInterval);
-            return (
-                <div>Time's up.</div>
-            );
-        }
+      const endTime = new moment(this.props.endTime);
+      const now = new moment();
+      const remainingSeconds = moment.duration(endTime.diff(now)).asSeconds();
+      this.timeUpInterval = setInterval(() => this.props.timeUp(), remainingSeconds * 1000);
+      return (
+        <Hourglass durationSeconds={remainingSeconds} />
+      )
     }
-
 }
 
 GameTimer.propTypes = {
