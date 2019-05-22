@@ -16,10 +16,10 @@ function Hourglass(props) {
 
             {/*  background  */}
             <svg>
-                <circle cx="150" cy="150" r="130" style={{ stroke: 'lightblue', strokeWidth: '18', fill: 'transparent' }} />
-                <circle cx="150" cy="150" r="115" style={{ fill: '#2c3e50' }} />
+                <circle cx="150" cy="150" r="130" style={{ stroke: '#ECC4BD', strokeWidth: '18', fill: 'transparent' }} />
+                <circle cx="150" cy="150" r="115" style={{ fill: '#43292E' }} />
                 <path style={{
-                    stroke: '#2c3e50',
+                    stroke: '#43292E',
                     strokeDasharray: '820',
                     strokeDashoffset: '820',
                     strokeWidth: '18',
@@ -37,14 +37,14 @@ function Hourglass(props) {
                     style={{ stroke: 'white', strokeWidth: '5', fill: 'white' }} />
 
                 <path id="frame" d="M100,97 L200, 97 M100,203 L200,203 M110,97 L110,142 M110,158 L110,200 M190,97 L190,142 M190,158 L190,200 M110,150 L110,150 M190,150 L190,150"
-                    style={{ stroke: 'lightblue', strokeWidth: '6', strokeLinecap: 'round' }} />
+                    style={{ stroke: '#ECC4BD', strokeWidth: '6', strokeLinecap: 'round' }} />
 
             </svg>
 
             {/*  sand  */}
             <svg>
                 {/*  upper part  */}
-                <polygon id="upper" points="120,125 180,125 150,147" style={{ fill: '#2c3e50' }}>
+                <polygon id="upper" points="120,125 180,125 150,147" style={{ fill: '#43292E' }}>
                     <animate
                         attributeName="points"
                         dur={duration}
@@ -60,7 +60,7 @@ function Hourglass(props) {
                     strokeLinecap="round"
                     strokeDasharray="1,4"
                     strokeDashoffset="200.00"
-                    stroke="#2c3e50"
+                    stroke="#43292E"
                     strokeWidth="2"
                     d="M150,150 L150,198">
                     {/*  running sand  */}
@@ -78,7 +78,7 @@ function Hourglass(props) {
                         attributeName="stroke"
                         dur={duration}
                         keyTimes="0; 0.95; 0.99; 1"
-                        values="#2c3e50;#2c3e50;transparent;transparent"
+                        values="#43292E;#43292E;transparent;transparent"
                         to="transparent"
                         repeatCount="0"
                         fill="freeze" />
@@ -86,7 +86,7 @@ function Hourglass(props) {
 
                 {/*  lower part  */}
                 <g id="lower">
-                    <path d="M150,180 L180,190 A28,10 0 1,1 120,190 L150,180 Z" style={{ stroke: 'transparent', strokeWidth: '5', fill: '#2c3e50' }}>
+                    <path d="M150,180 L180,190 A28,10 0 1,1 120,190 L150,180 Z" style={{ stroke: 'transparent', strokeWidth: '5', fill: '#43292E' }}>
                         <animateTransform attributeName="transform" type="translate" keyTimes="0; 0.99; 1" values="0 15; 0 0; 0 0" dur={duration} repeatCount="0" fill="freeze" />
                     </path>
 
@@ -98,7 +98,7 @@ function Hourglass(props) {
                 </path>
 
                 {/*  lower overlay - frame  */}
-                <path id="frame" d="M100,97 L200, 97 M100,203 L200,203" style={{ stroke: 'lightblue', strokeWidth: '6', strokeLinecap: 'round' }}>
+                <path id="frame" d="M100,97 L200, 97 M100,203 L200,203" style={{ stroke: '#ECC4BD', strokeWidth: '6', strokeLinecap: 'round' }}>
 
                 </path>
             </svg>
@@ -106,7 +106,7 @@ function Hourglass(props) {
         </svg>
     );
     return (
-        <div style={{ height: '50px', width: '50px' }} className="hourglass">
+        <div className="timerAnimation">
             <HourglassSvg />
         </div>
     );

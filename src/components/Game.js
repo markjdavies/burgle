@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'; 
 import { Loader } from 'semantic-ui-react'
+import { Card, Grid } from 'semantic-ui-react'
 
 import {
   START_GAME_REQUEST, START_GAME_SUCCESS, //START_GAME_FAILURE,
@@ -62,11 +63,26 @@ class Game extends React.Component {
   render() {
     if (this.props.hasBoard) {
       return (
-            <div className="game">
-
-              <GameTimerDisplay />   
-              <BoardDisplay />              
-              <ScorecardDisplay />
+            <div className="game">              
+              <Grid container columns={2} stackable>
+                <Grid.Column>
+                  <div className="board-container">
+                    <Card fluid>
+                      <Card.Content>
+                        <Card.Meta><GameTimerDisplay /></Card.Meta>
+                      </Card.Content>
+                      <Card.Content extra>                      
+                        <BoardDisplay />
+                      </Card.Content>
+                    </Card>
+                  </div>
+                </Grid.Column>
+                <Grid.Column>
+                  <div className="board-container">
+                    <ScorecardDisplay />
+                  </div>
+                </Grid.Column>
+              </Grid>              
             </div>
       );
     }

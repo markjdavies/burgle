@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'; 
+import { connect } from 'react-redux';
 import ScorecardWord from './ScorecardWord';
 import SorecardSummaryDisplay from './ScorecardSummary';
 import { valueFromPath } from '../word-utils';
 import './Scorecard.css';
 import WordBuilder from './WordBuilder';
+import { Card } from 'semantic-ui-react'
 
 const mapStateToScorecardProps = (state) => {
   return {
@@ -18,47 +19,53 @@ const mapStateToScorecardProps = (state) => {
 const mapDispatchToScorecardProps = (dispatch) => (
   {
   }
-  );
-  
-  class Scorecard extends React.Component {
-    
-    static propTypes = {
-      newWord: PropTypes.array,
-      foundWord: PropTypes.object,
-    };
-    
-    renderScorecardWord(word) {
-      const value = valueFromPath(word.path);
-      return (
-        <ScorecardWord
-          key={value}
-          value={value}
-          score={word.score}
-          />
-      )
-    }
-    
-    render() {
-      return (
-        <div className="game-info">
+);
+
+class Scorecard extends React.Component {
+
+  static propTypes = {
+    newWord: PropTypes.array,
+    foundWord: PropTypes.object,
+  };
+
+  renderScorecardWord(word) {
+    const value = valueFromPath(word.path);
+    return (
+      <ScorecardWord
+        key={value}
+        value={value}
+        score={word.score}
+      />
+    )
+  }
+
+  render() {
+    return (
+      <Card fluid>
+        <Card.Content>
+          <Card.Header>Words Found</Card.Header>
+          <Card.Meta><SorecardSummaryDisplay/></Card.Meta>
+        </Card.Content>
+        <Card.Content>
           <WordBuilder wordPath={this.props.newWord} />
-          <SorecardSummaryDisplay />
-          <table className="word-list">
-            <thead><tr><th></th><th>Score</th></tr></thead>
+        </Card.Content>
+        <Card.Content extra>
+          <table className="word-list game-info">
             <tbody>
               {this.props.foundWords.map(foundWord => (
-                  this.renderScorecardWord(foundWord)
-                ))}
+                this.renderScorecardWord(foundWord)
+              ))}
             </tbody>
           </table>
-        </div>
-      )
-    }
+        </Card.Content>
+      </Card>
+    )
   }
-  
+}
 
-  const ScorecardDisplay = connect(
-    mapStateToScorecardProps,
-    mapDispatchToScorecardProps
-  )(Scorecard);
-  export default ScorecardDisplay;
+
+const ScorecardDisplay = connect(
+  mapStateToScorecardProps,
+  mapDispatchToScorecardProps
+)(Scorecard);
+export default ScorecardDisplay;
