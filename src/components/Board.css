@@ -8,6 +8,7 @@
     background-size:  320px ;
     width: 320px;
     float: left;
+    touch-action: none;
   }
 
   .letter-grid {
