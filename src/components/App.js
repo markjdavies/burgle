@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { startGame } from '../redux-actions.js';
 import GameDisplay, { gameReducer } from './Game';
 import { boardReducer } from './Board';
-import './App.css';
 
 const reducer = combineReducers({
   game: gameReducer,

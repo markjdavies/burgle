@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'; 
+import { connect } from 'react-redux';
 import { Loader } from 'semantic-ui-react'
-import { Card, Grid } from 'semantic-ui-react'
+import { Container, Grid } from 'semantic-ui-react'
 
 import {
   START_GAME_REQUEST, START_GAME_SUCCESS, //START_GAME_FAILURE,
@@ -10,7 +10,6 @@ import {
 } from '../redux-actions.js';
 import BoardDisplay from './Board';
 import ScorecardDisplay from './Scorecard';
-import GameTimerDisplay from './GameTimer';
 
 export function gameReducer(state = {
   id: undefined,
@@ -32,9 +31,9 @@ export function gameReducer(state = {
         isUnderway: true,
       });
     case TIME_UP:
-    return Object.assign({}, state, {
-      isUnderway: false,
-    });
+      return Object.assign({}, state, {
+        isUnderway: false,
+      });
     default:
       return state;
   }
@@ -63,27 +62,18 @@ class Game extends React.Component {
   render() {
     if (this.props.hasBoard) {
       return (
-            <div className="game">              
-              <Grid container columns={2} stackable>
-                <Grid.Column>
-                  <div className="board-container">
-                    <Card fluid>
-                      <Card.Content>
-                        <Card.Meta><GameTimerDisplay /></Card.Meta>
-                      </Card.Content>
-                      <Card.Content extra>                      
-                        <BoardDisplay />
-                      </Card.Content>
-                    </Card>
-                  </div>
-                </Grid.Column>
-                <Grid.Column>
-                  <div className="board-container">
-                    <ScorecardDisplay />
-                  </div>
-                </Grid.Column>
-              </Grid>              
-            </div>
+        <Container>
+          <div className="game">
+            <Grid container columns={2} stackable>
+              <Grid.Column>
+                <BoardDisplay />
+              </Grid.Column>
+              <Grid.Column>
+                <ScorecardDisplay />
+              </Grid.Column>
+            </Grid>
+          </div>
+        </Container >
       );
     }
     else {

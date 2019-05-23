@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import GameTimerDisplay from './GameTimer';
 import ScorecardWord from './ScorecardWord';
 import SorecardSummaryDisplay from './ScorecardSummary';
 import { valueFromPath } from '../word-utils';
@@ -43,7 +44,7 @@ class Scorecard extends React.Component {
     return (
       <Card fluid>
         <Card.Content>
-          <Card.Header>Words Found</Card.Header>
+          <Card.Header><GameTimerDisplay />Scores</Card.Header>
           <Card.Meta><SorecardSummaryDisplay/></Card.Meta>
         </Card.Content>
         <Card.Content>
