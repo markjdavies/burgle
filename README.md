@@ -1,6 +1,6 @@
 # Create React App
 
-In this example we will be deploying a simple "Hello World" example with Create React App.
+In this example we will be deploying a simple "Burgle" game with Create React App.
 
 ### Getting started with Create React App
 
